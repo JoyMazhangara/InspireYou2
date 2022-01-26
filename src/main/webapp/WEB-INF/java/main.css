@@ -1,0 +1,180 @@
+header {
+    height: 80px;
+    display: flex;
+    background-color: rgb(47, 79, 79);
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 8px;
+}
+
+header > h1 {
+  margin-left: 60px;
+  color: snow;
+}
+
+header > div {
+  margin-top: 30px;
+  margin-left: 900px;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+article {
+    margin-top: 20px;
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+}
+
+ul {
+    font-size: 24px;
+    width: 100%;
+}
+
+li {
+    cursor: pointer;
+    
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-weight: bold;
+    background: teal;
+    color: white;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+
+/* INSPO STORY CARDS CSS */
+
+
+#story-form {
+  width: 350px;
+  height: 350px;
+  background-color: darkslategray;
+  position: relative;
+  display: flex; 
+  flex-direction: column;
+  justify-content: space-evenly; 
+  align-items: center;
+  margin: 30px;
+  box-shadow: 0px 0px 10px gray;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+#main-left {
+  
+  width: 31%;
+}
+
+
+#board-title {
+  font-family: 'lucida handwriting';
+}
+
+#story-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+  
+input[type='text'] {
+    width: 85%;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid #232323;
+    color: #232323;
+    background-color: snow;
+    
+  }
+
+  textarea[id='text'] {
+    width: 85%;
+    height: 60px;
+    border: none;
+    border-bottom: 2px solid #232323;
+    color: #232323;
+    background-color: snow;
+  }
+  
+  #text-container {
+    width: 85%;
+  }
+  
+  #radio-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  #stories-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .story-cover-image {
+    width: 300px; 
+    height: 300px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .story-card {
+    background-color: #c59a4a;
+    width: 300px;
+    margin: 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0px 0px 10px gray;
+  }
+  
+  .story-title {
+    font-size: 20px;
+    margin: 5px 0;
+    font-weight: 900;
+    text-decoration: underline;
+  }
+  
+  .story-text {
+    font-size: 15px;
+    margin: 5px 15px;
+  }
+  
+  .txt-container {
+    width: 100%; 
+    display: flex;
+    justify-content: space-evenly;
+    margin: 5px;
+  }
