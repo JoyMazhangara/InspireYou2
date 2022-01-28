@@ -8,11 +8,10 @@ import javax.persistence.*;
 public class Compliment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "compliment_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "compliment", length = 25, nullable = false)
+    @Column(length = 25, nullable = false)
     private String compliment;
 
     public Compliment(Long id, String compliment) {

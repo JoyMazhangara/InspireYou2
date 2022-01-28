@@ -10,17 +10,16 @@ import javax.persistence.*;
 public class Story {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "id", columnDefinition = "not null")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     private User user;
 
-    @Column(name = "title", nullable = false)
+    @Column(nullable = false)
     private String title;
 
-    @Column(name = "story", length = 255, nullable = false)
+    @Column(length = 255, nullable = false)
     private String story;
 
     public Story(Long id, String title, String story) {
@@ -32,7 +31,7 @@ public class Story {
     public Story(StoryDto storyDto) {
         this.title = storyDto.getTitle();
         this.story = storyDto.getStory();
-        this.user = storyDto.getUser();
+
     }
 
     public Story() {

@@ -18,10 +18,22 @@ public class UserServiceImpl implements UserService {
     StoryRepository storyRepository;
     @Autowired
     EntityManager entityManager;
-    @Override
-    public User addUser(UserDto userDto) {
 
+    @Override
+    public void addUser(UserDto userDto) {
         User user = new User(userDto);
-        userRepository.saveAndFlush()
+        userRepository.saveAndFlush(user);
+    }
+
+
+    @Override
+    public String login(UserDto userDto) {
+        User userLogin1 = userRepository.findByEmail(userDto.getEmail());
+
+        if (userLogin1.getEmail().equals(userDto.getEmail()) && userLogin1.getPassword().equals(userDto.getPassword())) {
+            return "user logged in successfully";
+        } else {
+            return "user log in failed";
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.brightpaths.InspireYou2.entities;
 
 
+import com.brightpaths.InspireYou2.models.UserDto;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +11,7 @@ import java.util.List;
 @Table(name = "Users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", columnDefinition = "not null")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name", length = 25, nullable = false)
@@ -19,10 +20,10 @@ public class User {
     @Column(name = "last_name", length = 25, nullable = false)
     private String lastName;
 
-    @Column(name = "email", nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password", length = 25, nullable = false)
+    @Column(length = 25, nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user")
@@ -38,6 +39,14 @@ public class User {
 
     public User() {
 
+    }
+
+    public User(UserDto userDto) {
+        this.id = userDto.getId();
+        this.firstName = userDto.getFirstName();
+        this.lastName = userDto.getLastName();
+        this.email = userDto.getEmail();
+        this.password = userDto.getPassword();
     }
 
     public Long getid() {
