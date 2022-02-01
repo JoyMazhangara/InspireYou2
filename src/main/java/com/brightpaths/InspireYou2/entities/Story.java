@@ -22,16 +22,20 @@ public class Story {
     @Column(length = 255, nullable = false)
     private String story;
 
-    public Story(Long id, String title, String story) {
+    @Column(columnDefinition = "text", nullable = false)  //TODO ensure that this takes in any length for the URL
+    private String imageURL;
+
+    public Story(Long id, String title, String story, String imageURL) {
         this.id = id;
         this.title = title;
         this.story = story;
+        this.imageURL = imageURL;
     }
 
     public Story(StoryDto storyDto) {
         this.title = storyDto.getTitle();
         this.story = storyDto.getStory();
-
+        this.imageURL = storyDto.getImageURL();
     }
 
     public Story() {
@@ -45,6 +49,13 @@ public class Story {
         this.id = id;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 
     public String getTitle() {
         return title;

@@ -19,6 +19,6 @@ public class RegisterController {
     @PostMapping
     public String newUser(@RequestBody UserDto userDto){
         userService.addUser(userDto);
-        return "new user added successfully";
+        return "http://localhost:8080/home.html";
     }
 }

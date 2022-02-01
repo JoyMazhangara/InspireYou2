@@ -6,33 +6,43 @@ import com.brightpaths.InspireYou2.entities.User;
 public class StoryDto {
 
     private Long id;
-    private User user;
+    private UserDto userDto;
     private String title;
     private String story;
+    private String imageURL;
 
-    public StoryDto(Long id, User user, String title, String story) {
+    public StoryDto(Long id, UserDto userDto, String title, String story, String imageURL) {
         this.id = id;
-        this.user = user;
+        this.userDto = userDto;
         this.title = title;
         this.story = story;
+        this.imageURL = imageURL;
     }
 
-    public StoryDto(User user, String title, String story) {
-        this.user = user;
+    public StoryDto(UserDto userDto, String title, String story, String imageURL) {
+        this.userDto = userDto;
         this.title = title;
         this.story = story;
+        this.imageURL = imageURL;
     }
 
+    //TODO figure how to flesh out the use of userDto in my layers, shouldn't it pull from the user entity like my UserDto pulls from the story entity to create a copy?
     public StoryDto(Story story) {
         this.id = story.getId();
-        this.user = story.getUser();
+        UserDto dto = new UserDto();
+        dto.setEmail(story.getUser().getEmail());
+
+
+        this.userDto = dto;
         this.title = story.getTitle();
         this.story = story.getStory();
+        this.imageURL = story.getImageURL();
     }
 
-    public StoryDto(String title, String story) {
+    public StoryDto(String title, String story, String imageURL) {
         this.title = title;
         this.story = story;
+        this.imageURL = imageURL;
     }
 
     public StoryDto() {
@@ -47,12 +57,12 @@ public class StoryDto {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public UserDto getUserDto() {
+        return userDto;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
     }
 
     public String getTitle() {
@@ -69,5 +79,13 @@ public class StoryDto {
 
     public void setStory(String story) {
         this.story = story;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

@@ -1,6 +1,7 @@
 package com.brightpaths.InspireYou2.services;
 
 import com.brightpaths.InspireYou2.entities.User;
+import com.brightpaths.InspireYou2.models.StoryDto;
 import com.brightpaths.InspireYou2.models.UserDto;
 import com.brightpaths.InspireYou2.repositories.StoryRepository;
 import com.brightpaths.InspireYou2.repositories.UserRepository;
@@ -15,9 +16,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    StoryRepository storyRepository;
-    @Autowired
-    EntityManager entityManager;
+    StoryService storyService;
+
 
     @Override
     public void addUser(UserDto userDto) {
@@ -27,11 +27,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String login(UserDto userDto) {
+    public String login(StoryDto storyDto, UserDto userDto) {
         User userLogin1 = userRepository.findByEmail(userDto.getEmail());
 
         if (userLogin1.getEmail().equals(userDto.getEmail()) && userLogin1.getPassword().equals(userDto.getPassword())) {
-            return "user logged in successfully";
+            storyService.addStory(storyDto);
+            return "http://localhost:8080/story.html";
         } else {
             return "user log in failed";
         }

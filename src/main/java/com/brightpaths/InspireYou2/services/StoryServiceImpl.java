@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StoryServiceImpl implements StoryService{
@@ -16,13 +20,21 @@ public class StoryServiceImpl implements StoryService{
     StoryRepository storyRepository;
     @Autowired
     UserRepository userRepository;
-    @Autowired
+    @PersistenceContext
     EntityManager entityManager;
     @Override
     public void addStory(StoryDto storyDto) {
-//        User user = entityManager.createNativeQuery("SELECT * FROM users u WHERE u.user_id=?1").setParameter(1,userId).getFirstResult();
-//        storyDto.setUser(user);
-        Story story = new Story(storyDto);
+        Story story = new Story(storyDto); //TODO I need to add code that checks that the user has an account!
+//        story.setUser(userRepository.getById(storyDto.getUser().getid()));
         storyRepository.saveAndFlush(story);
     }
+
+    @Override
+    public List<Story> getAllStories() {
+//        List<StoryDto> StoriesList = entityManager.createNativeQuery("SELECT  FROM stories s").getResultList();
+//        return StoriesList.get(0);
+//        return storyRepository.findAll().stream().map(StoryDto::new).collect(Collectors.toList());
+        return entityManager.createNativeQuery("SELECT * FROM stories").getResultList();
+    }
+
 }
