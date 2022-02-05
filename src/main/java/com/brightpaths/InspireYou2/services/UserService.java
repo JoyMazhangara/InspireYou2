@@ -8,5 +8,5 @@ public interface UserService {
 
     void addUser(UserDto userDto);
 
-    String login(StoryDto storyDto, UserDto userDto);
+    String login(StoryDto storyDto);
 }

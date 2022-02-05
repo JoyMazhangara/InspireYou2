@@ -88,4 +88,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(List<Story> stories) {
+        this.stories = stories;
+    }
 }

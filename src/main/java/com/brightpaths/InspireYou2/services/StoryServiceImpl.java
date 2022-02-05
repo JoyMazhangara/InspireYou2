@@ -1,7 +1,9 @@
 package com.brightpaths.InspireYou2.services;
 
 import com.brightpaths.InspireYou2.entities.Story;
+import com.brightpaths.InspireYou2.entities.User;
 import com.brightpaths.InspireYou2.models.StoryDto;
+import com.brightpaths.InspireYou2.models.UserDto;
 import com.brightpaths.InspireYou2.repositories.StoryRepository;
 import com.brightpaths.InspireYou2.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,10 +26,19 @@ public class StoryServiceImpl implements StoryService{
     @PersistenceContext
     EntityManager entityManager;
     @Override
-    public void addStory(StoryDto storyDto) {
-        Story story = new Story(storyDto); //TODO I need to add code that checks that the user has an account!
-//        story.setUser(userRepository.getById(storyDto.getUser().getid()));
-        storyRepository.saveAndFlush(story);
+    public List<String> addStory(StoryDto storyDto) {
+        List<String> response = new ArrayList<>();
+        Story story = new Story(storyDto);
+        Optional<User> userExists = Optional.ofNullable(userRepository.findByEmail(storyDto.getEmail()));
+        if (userExists.isPresent()) {
+            User userValid = userRepository.findByEmail((storyDto.getEmail()));
+            story.setUser(userValid);
+            storyRepository.saveAndFlush(story);
+            response.add("story added successfully");
+        } else {
+            response.add("email or password was incorrect");
+        }
+        return  response;
     }
 
     @Override

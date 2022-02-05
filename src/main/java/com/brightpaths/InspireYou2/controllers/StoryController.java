@@ -20,8 +20,8 @@ public class StoryController {
     UserService userService;
 
     @PostMapping
-    public String addStory(@RequestBody StoryDto storyDto, UserDto userDto){
-        return userService.login(storyDto, userDto);
+    public String addStory(@RequestBody StoryDto storyDto){
+        return userService.login(storyDto);
     };
 
     @GetMapping
